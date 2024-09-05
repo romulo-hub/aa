@@ -1,24 +1,26 @@
-name: Cypress Tests for Test Branch
+name: Cypress Tests
 
 on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
   workflow_dispatch:
     inputs:
       folder:
-        description: "Integration"
+        description: "shared"
         required: true
-        default: "shared"
+        default: "integration/shared"
         type: choice
         options:
-          - shared
+          - "integration/shared"
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
 
     steps:
       - name: Checkout code
@@ -27,10 +29,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "14"
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
 
       - name: Run Cypress Tests
-        run: npx cypress run -- --headless --spec "cypress/integration/nopCommerce/shared/**/*.spec.js"
+        run: npm run cypress:run -- --headless --spec "cypress/${{ github.event.inputs.folder }}/**/*.spec.js"
+        env:
+          CI: true
