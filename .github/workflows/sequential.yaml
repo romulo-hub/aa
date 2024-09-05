@@ -6,8 +6,8 @@ on:
       - test # Executa apenas na branch 'test'
   pull_request:
     branches:
-      - test # Executa quando houver PRs na branch 'test'
-  workflow_dispatch: # Permite execução manual
+      - test
+  workflow_dispatch:
 
 jobs:
   cypress-run:
