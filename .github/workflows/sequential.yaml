@@ -1,18 +1,20 @@
 name: Cypress Tests
 
 on:
+  # Executar automaticamente em push para test e master
   push:
     branches:
+      - test
       - master
+
+  # Permitir execução manual
   workflow_dispatch:
     inputs:
       folder:
-        description: "shared"
+        description: "cypress/integration/shared"
         required: true
-        default: "integration/shared"
-        type: choice
-        options:
-          - "integration/shared"
+        default: "cypress/integration/shared"
+        type: string
 
 jobs:
   cypress-run:
@@ -23,18 +25,22 @@ jobs:
         node-version: [14.x]
 
     steps:
+      # Checkout do código
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
+      # Instalar dependências
       - name: Install dependencies
         run: npm install
 
+      # Executar testes Cypress
       - name: Run Cypress Tests
-        run: npm run cypress:run -- --headless --spec "cypress/${{ github.event.inputs.folder }}/**/*.spec.js"
+        run: npm run cypress:run -- --spec "${{ github.event.inputs.folder }}/**/*.spec.js"
         env:
           CI: true
