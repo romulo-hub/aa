@@ -11,12 +11,12 @@ on:
   workflow_dispatch:
     inputs:
       folder:
-        description: "cypess/integration/shared"
+        description: "cypress/integration/shared"
         required: true
-        default: "shared"
+        default: "integration/nopCommerce/shared"
         type: choice
         options:
-          - "cypress/integration/shared"
+          - "integration/nopCommerce/shared"
 
 jobs:
   cypress-run:
@@ -43,6 +43,6 @@ jobs:
 
       # Executar testes Cypress
       - name: Run Cypress Tests
-        run: npm run cypress:run -- --spec "${{ github.event.inputs.folder }}/**/*.spec.js"
+        run: npx run cypress:run -- --spec "${{ github.event.inputs.folder }}/**/*.spec.js"
         env:
           CI: true
