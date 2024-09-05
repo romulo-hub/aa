@@ -27,4 +27,4 @@ jobs:
 
       # Executa os testes do Cypress na pasta shared
       - name: Run Cypress Tests
-        run: npx cypress run --spec "cypress/integration/nopCommerce/shared/**/*.spec.js"
+        run: npx cypress run --spec "cypress/integration/shared/**/*.spec.js"
