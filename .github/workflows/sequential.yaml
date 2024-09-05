@@ -46,6 +46,6 @@ jobs:
 
       # Executar testes Cypress
       - name: Run Cypress Tests
-        run: npx run cypress:run -- headless --spec "${{ github.event.inputs.folder }}/**/*.spec.js"
+        run: npm run cypress:run -- headless --spec "${{ github.event.inputs.folder }}/**/*.spec.js"
         env:
           CI: true
