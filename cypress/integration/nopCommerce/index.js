@@ -11,7 +11,7 @@ class nopCommerce {
     cy.get(el.botao3).type("cristiver10");
     cy.get(el.botao4).click();
   }
-
+  ///ddddddd
   Eletronicos() {
     cy.get(el.botao5).click();
     cy.get(el.botao6).click();
