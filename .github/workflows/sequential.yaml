@@ -13,10 +13,10 @@ on:
       folder:
         description: "cypress/integration/shared"
         required: true
-        default: "integration/nopCommerce/shared"
+        default: "integration/shared"
         type: choice
         options:
-          - "integration/nopCommerce/shared"
+          - "integration/shared"
 
 jobs:
   cypress-run:
