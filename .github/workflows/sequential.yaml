@@ -1,6 +1,5 @@
 name: Run Cypress Tests on Shared Folder
 
-# Dispara o workflow em cada push para a branch master
 on:
   push:
     branches:
