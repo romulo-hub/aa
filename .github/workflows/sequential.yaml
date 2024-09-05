@@ -1,22 +1,30 @@
-name: End-to-end tests
-on: push
-  workflow_dispatch:
-    inputs:
-      folder:
-        description: 'Integration'
-        required: true
-        default: 'shared'
-        type: choice
-        options:
-          - shared
+name: Run Cypress Tests on Shared Folder
+
+# Dispara o workflow em cada push para a branch master
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        
+      # Faz o checkout do código
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Configura o Node.js (assumindo que seu projeto é Node.js)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+
+      # Instala as dependências do projeto
+      - name: Install dependencies
+        run: npm install
+
+      # Executa os testes do Cypress na pasta shared
+      - name: Run Cypress Tests
+        run: npx cypress run --spec "cypress/integration/nopCommerce/shared/**/*.spec.js"
