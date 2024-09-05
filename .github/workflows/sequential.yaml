@@ -3,7 +3,7 @@ name: Cypress Tests for Test Branch
 on:
   push:
     branches:
-      - test # Executa apenas na branch 'test'
+      - test
   pull_request:
     branches:
       - test
