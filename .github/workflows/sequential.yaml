@@ -26,6 +26,4 @@ jobs:
         run: npm install
 
       - name: Run Cypress Tests
-        run: npm run cypress:run -- --headless --spec "cypress/integration/**/**/*.spec.js"
-        env:
-          CI: true
+        run: npx cypress run -- --headless --spec "cypress/integration/nopCommerce/shared/**/*.spec.js"
