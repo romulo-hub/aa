@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       folder:
-        description: "Select the folder to run tests from"
+        description: "Integration"
         required: true
         default: "shared"
         type: choice
