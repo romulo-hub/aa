@@ -11,10 +11,12 @@ on:
   workflow_dispatch:
     inputs:
       folder:
-        description: "cypress/integration/shared"
+        description: "cypess/integration/shared"
         required: true
         default: "shared"
-        type: string
+        type: choice
+        options:
+          - "cypress/integration/shared"
 
 jobs:
   cypress-run:
