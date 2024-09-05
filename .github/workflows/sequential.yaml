@@ -1,5 +1,4 @@
-name: Cypress Tests
-
+name: End-to-end tests
 on:
   # Executar automaticamente em push para test e master
   push:
@@ -17,34 +16,13 @@ on:
         type: choice
         options:
           - shared
-
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
+    runs-on: ubuntu-22.04
     steps:
-      # Checkout do código
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-
-      # Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install Cypress
-        run: npm install cypress
-
-      # Instalar dependências
-      - name: Install dependencies
-        run: npm install
-
-      # Executar testes Cypress
-      - name: Run Cypress Tests
-        run:  npm run cypress:run --spec "cypress/integration/shared/**/*.spec.js"
-          CI: true
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
