@@ -46,5 +46,5 @@ jobs:
 
       # Executar testes Cypress
       - name: Run Cypress Tests
-        run:  npx cypress run --spec "cypress/integration/shared/**/*.spec.js"
+        run:  npm run cypress:run --spec "cypress/integration/shared/**/*.spec.js"
           CI: true
