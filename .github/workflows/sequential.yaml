@@ -13,10 +13,10 @@ on:
       folder:
         description: "cypress/integration/shared"
         required: true
-        default: "integration/shared"
+        default: shared
         type: choice
         options:
-          - "integration/shared"
+          - shared
 
 jobs:
   cypress-run:
